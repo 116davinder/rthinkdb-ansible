@@ -1,0 +1,7 @@
+---
+
+ansible_distribution_major_version
+
+sudo wget http://download.rethinkdb.com/centos/7/x86_64/rethinkdb.repo \
+          -O /etc/yum.repos.d/rethinkdb.repo
+sudo yum install rethinkdb

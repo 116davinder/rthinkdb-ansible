@@ -1,0 +1,14 @@
+---
+
+- name: Rthink Repository Configure
+  yum_repository:
+    name: RethinkDB
+    baseurl: "https://download.rethinkdb.com/centos/{{ ansible_distribution_major_version }}/x86_64/"
+    gpgcheck: no
+    enabled: yes
+    file: rthink.repo
+
+- name: Installing RthinkDB
+  yum:
+    name: rethinkdb
+    state: present
