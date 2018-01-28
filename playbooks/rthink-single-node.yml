@@ -1,11 +1,13 @@
+
+- hosts: rthinkdb-hosts
+  gather_facts: true
+  tasks:
+    - name: Getting Vars from | Vars/{{ rethinkClusterMode }}
+      include_vars: "vars/{{ rethinkClusterMode }}.yml"
+
 - hosts: rthinkdb-hosts
   gather_facts: true
   roles:
     - common
-  tasks:
-    - name: Ensuring RthinkDB is Running
-      systemd:
-        name: rthinkdb
-        state: started
-        enabled: True
-        daemon_reload: True
+    - service
+

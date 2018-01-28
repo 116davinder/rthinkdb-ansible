@@ -1,13 +1,13 @@
 ---
 
-- name: Creating Service File | Memcached
+- name: Creating Service File | Rethink
   template:
     src: service.j2
-    dest: /usr/lib/systemd/system/memcached.service
+    dest: /usr/lib/systemd/system/rethink.service
 
-- name: Starting Memcached Service
+- name: Starting rethink Service
   systemd:
-    name: memcached
+    name: rethink
     state: started
     enabled: true
     daemon_reload: true

@@ -23,12 +23,12 @@ cd /home/vagrant/projects/playbooks
 SINGLE NODE
 
 ```
-ansible-playbook -i hosts/single-node.ini rthink-single-node.yml
+ansible-playbook -i hosts/single-node.ini rthink-single-node.yml -e rethinkClusterMode=single
 ```
 
 CLUSTER SETUP
 ```
-ansible-playbook -i hosts/cluster.ini rthink-cluster.yml
+ansible-playbook -i hosts/cluster.ini rthink-cluster.yml -e rethinkClusterMode=cluster
 ```
 
 # Supported/Tested OS

@@ -3,6 +3,7 @@
 - name: Rthink Repository Configure
   yum_repository:
     name: RethinkDB
+    description: rthinkdb
     baseurl: "https://download.rethinkdb.com/centos/{{ ansible_distribution_major_version }}/x86_64/"
     gpgcheck: no
     enabled: yes
@@ -12,3 +13,27 @@
   yum:
     name: rethinkdb
     state: present
+
+- name: Creating Config File
+  template:
+    src: rethinkdb.conf.j2
+    dest: /etc/rethinkdb/instances.d/rethinkdb.conf
+
+- name: Creating RethinkDB Dir | {{ rethinkMetadataStore }}
+  command: '/usr/bin/rethinkdb create -d {{ rethinkMetadataStore }}'
+  args:
+    creates: "{{ rethinkMetadataStore }}/log_file"
+
+- name: Settings Permissions RethinkDB Data Directory | {{ rethinkMetadataStore }}
+  file:
+    path: "{{ rethinkMetadataStore }}"
+    state: directory
+    owner: rethinkdb
+    group: rethinkdb
+
+- name: Creating Tmp file for Rethinkdb
+  lineinfile:
+    path: /usr/lib/tmpfiles.d/rethinkdb.conf
+    line: 'd /run/rethinkdb 0755 rethinkdb rethinkdb -'
+    state: present
+    create: True

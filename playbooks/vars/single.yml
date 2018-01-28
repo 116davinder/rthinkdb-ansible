@@ -1,0 +1,12 @@
+---
+
+rethinkLogFile: /var/log/rethinkdb
+rethinkDriverPort: 28015
+rethinkClusterPort: 29015
+rethinkHttpPort: 8080
+rethinkWebAdminConsoleDisable: False
+rethinkCpuCores: 1
+rethinkMemoryCache: 256
+rethinkDiskIoThreads: 64
+rethinkDisableDrirectIo: False
+rethinkMetadataStore: /var/lib/rethinkdb
